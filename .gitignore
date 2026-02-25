@@ -1,0 +1,4 @@
+nba_data/raw/play_by_play.csv
+__pycache__/
+*.pyo
+*.pyc
