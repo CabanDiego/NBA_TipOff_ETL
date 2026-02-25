@@ -1,5 +1,5 @@
 nba_data/raw/play_by_play.csv
-nba_data/filtered/
+nba_data/filtered/filtered_tip_off.csv
 __pycache__/
 *.pyo
 *.pyc
