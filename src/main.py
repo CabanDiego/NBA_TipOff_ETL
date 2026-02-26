@@ -10,6 +10,6 @@ OUTDIR.mkdir(exist_ok=True)
 def main():
     '''Main'''
     run_pipeline(RAWDATA)
-    
+
 if __name__ == "__main__":
     main()
