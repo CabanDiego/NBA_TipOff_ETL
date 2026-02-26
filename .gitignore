@@ -3,3 +3,4 @@ nba_data/filtered/filtered_tip_off.csv
 __pycache__/
 *.pyo
 *.pyc
+src/logger/logs.log
