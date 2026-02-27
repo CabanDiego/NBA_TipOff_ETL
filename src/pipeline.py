@@ -13,5 +13,5 @@ def run_pipeline(source: Path):
     win_percentages = calc_win_perc(filtered_data)
     print(win_percentages)
     logger.info("Finding Highest and Lowest Percentages")
-    print("Highest Percentage: ", highest_percentage(win_percentages))
-    print("Lowest Percentage: ", lowest_percentage(win_percentages))
+    highest_percentage(win_percentages)
+    lowest_percentage(win_percentages)

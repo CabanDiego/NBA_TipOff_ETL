@@ -9,7 +9,7 @@ def filter_tip_off(source: Path) -> Path:
     '''Filter play_by_play into Starting Tip Offs only'''
     #Checking to see if filtered file was created successfully
     if not source.exists():
-        logger.error(f"Source file does not exist: {source}")
+        logger.error(f"Data file does not exist: {source}")
         raise FileNotFoundError(f"{source} not found")
     
     #Checking to see if file with teams exists
@@ -21,11 +21,11 @@ def filter_tip_off(source: Path) -> Path:
     #Checking to see if file with teams exists
     games_file = Path("nba_data/raw/game.csv")
     if not games_file.exists():
-        logger.error(f"Teams file does not exist: {games_file}")
+        logger.error(f"Games file does not exist: {games_file}")
         raise FileNotFoundError(f"{games_file} not found")
     
     
-    logger.info("Filtering Play_by_Play File")
+    logger.info("Filtering play_by_play data file")
     #Create DF from the play_by_play and teams csv
     df = pd.read_csv(source)
     teamsdf = pd.read_csv(teams_file)
