@@ -1,5 +1,6 @@
 '''Module to filter nba file to a csv with only game start tip offs'''
 import pandas as pd
+import sqlite3
 import logging
 from pathlib import Path
 
@@ -26,8 +27,12 @@ def filter_tip_off(source: Path) -> Path:
     
     
     logger.info("Filtering Play_by_Play File")
+    #Removing uncesessary columns
+    un_columns = ['eventnum', 'wctimestring', 'pctimestring', 'homedescription',
+                  'visitordescription', 'score', 'scoremargin']
     #Create DF from the play_by_play and teams csv
     df = pd.read_csv(source)
+    df.drop(un_columns, inplace=True, axis=1)
     teamsdf = pd.read_csv(teams_file)
     gamesdf = pd.read_csv(games_file)
     
@@ -51,9 +56,9 @@ def filter_tip_off(source: Path) -> Path:
     
     try:
         filtered_df.to_csv(output_path, index=False)
-        logger.info(f"Filtered tip-offs saved to {output_path}")
+        logger.info(f"Filtered tip-offs saved to database")
     except Exception:
-        logger.exception(f"Failed to save filtered_df to {output_path}")
+        logger.exception(f"Failed to save filtered data")
         raise
     
     return output_path
