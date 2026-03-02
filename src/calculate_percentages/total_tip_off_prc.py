@@ -13,13 +13,13 @@ def calc_win_perc(source: Path)-> Dict:
         logger.error(f"Source file does not exist: {source}")
         raise FileNotFoundError(f"{source} not found")
 
-    logger.info("Getting Tip Off Wins")
+    logger.info("Calculating each team's Tip Off Wins")
     df = pd.read_csv(source)
 
     #Storing amount of tip_offs each team has won
     to_wins = df['player3_team_abbreviation'].value_counts()
 
-    logger.info("Getting teams and total games played")
+    logger.info("Calculating each team's total games played")
     
     #Checking to see if file with teams exists
     teams_file = Path("nba_data/raw/team.csv")
@@ -37,7 +37,7 @@ def calc_win_perc(source: Path)-> Dict:
         games_played[team] = df[(df['player1_team_abbreviation'] == team) |
                                (df['player2_team_abbreviation'] == team) ].shape[0]
 
-    logger.info("Saving percentages to dictionary")
+    logger.info("Calculating and saving percentages to dictionary")
     #Creating new Dict with each team abbreviation as the key, and tip off win % as value
     tip_off_win_perc = {team: float(round(to_wins.get(team, 0) / games_played[team] * 100, 2))
                     for team in teams}
